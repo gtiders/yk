@@ -1,5 +1,9 @@
 # YK - Command Management Tool
 
+[🇨🇳 中文说明](README_ZH.md) | [🇺🇸 English](README.md)
+
+---
+
 [![Rust](https://img.shields.io/badge/Rust-1.70+-orange.svg)](https://www.rust-lang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
