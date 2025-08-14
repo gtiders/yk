@@ -2,10 +2,8 @@
 
 [🇨🇳 中文说明](README_ZH.md) | [🇺🇸 English](README.md)
 
+The original repository at `git@github.com:gybwins/yk.git` has been banned for unknown reasons and remains unblocked. Future updates will be made in the current repository
 ---
-
-[![Rust](https://img.shields.io/badge/Rust-1.70+-orange.svg)](https://www.rust-lang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 YK is a command management tool that supports both simple commands and complex plugin-based commands through an interactive interface. Quickly find, execute, and manage various command snippets to make your daily workflow more efficient.
 
@@ -30,9 +28,9 @@ YK is a command management tool that supports both simple commands and complex p
 #### 1. Clone Repository
 
 ```bash
-git clone git@github.com:gybwins/yk.git
+git clone git@github.com:gtiders/yk.git
 # Or
-https://github.com/gybwins/yk.git
+https://github.com/gtiders/yk.git
 
 cd yk
 ```

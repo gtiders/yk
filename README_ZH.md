@@ -1,7 +1,6 @@
 # YK - 命令管理工具
 
-[![Rust](https://img.shields.io/badge/Rust-1.70+-orange.svg)](https://www.rust-lang.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+原仓库在<git@github.com>:gybwins/yk.git  因不知名原因被封禁，仍未解封，以后更新会在现在这个仓库
 
 YK 是一个命令管理工具，支持简单命令和复杂插件化命令的交互式管理。通过简洁的交互界面，您可以快速查找、执行和管理各种命令片段，让日常工作流程更加高效。
 
@@ -26,9 +25,9 @@ YK 是一个命令管理工具，支持简单命令和复杂插件化命令的�
 #### 1. 克隆仓库
 
 ```bash
-git clone git@github.com:gybwins/yk.git
+git clone git@github.com:gtiders/yk.git
 # 或者
-git clone https://github.com/gybwins/yk.git
+git clone https://github.com/gtiders/yk.git
 
 cd yk
 ```
