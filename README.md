@@ -1,97 +1,146 @@
-# YK - 命令管理工具
+# YK - Command Management Tool
 
 [![Rust](https://img.shields.io/badge/Rust-1.70+-orange.svg)](https://www.rust-lang.org/)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-YK 是一个命令管理工具，支持简单命令和复杂插件化命令的交互式管理。
+YK is a command management tool that supports both simple commands and complex plugin-based commands through an interactive interface. Quickly find, execute, and manage various command snippets to make your daily workflow more efficient.
 
-## 核心特性
+## Core Features
 
-- **零配置启动**：开箱即用，无需配置
-- **交互式搜索**：基于 fzf 的模糊查找
-- **插件化架构**：支持复杂命令的插件扩展
-- **剪贴板集成**：自动复制命令到剪贴板
-- **跨平台支持**：Windows、Linux、macOS
-- **可视化配置**：通过 JSON 文件灵活配置
+- **Zero Configuration**: Works out of the box without any setup required
+- **Interactive Search**: Fuzzy finding powered by fzf for quick command location
+- **Plugin Architecture**: Supports plugin extensions for complex commands to handle various scenarios
+- **Clipboard Integration**: Automatically copies commands to clipboard for immediate use
+- **Cross-Platform**: Perfect compatibility with Windows, Linux, and macOS
+- **Visual Configuration**: Flexible JSON-based configuration that's easy to manage and share
 
-## 快速开始
+## Build & Install
 
-### 安装
+### Requirements
 
-#### 源码编译
+- **Rust**: 1.70 or higher
+- **Cargo**: Rust's package manager
+
+### Build from Source
+
+#### 1. Clone Repository
 
 ```bash
-git clone <repository-url>
+git clone git@github.com:gybwins/yk.git
+# Or
+https://github.com/gybwins/yk.git
+
 cd yk
+```
+
+#### 2. Build Release Version
+
+```bash
 cargo build --release
 ```
 
-#### 添加到系统 PATH
+After compilation, the executable will be located at:
 
-**Windows:**
+- **Windows**: `target\release\yk.exe`
+- **Linux/macOS**: `target/release/yk`
+
+#### 3. Add to System PATH
+
+**Windows (PowerShell):**
 
 ```powershell
+# Method 1: Copy to system directory
 copy target\release\yk.exe C:\Windows\System32\
+
+# Method 2: Add to user PATH (recommended)
+$env:PATH += ";$PWD\target\release"
 ```
 
 **Linux/macOS:**
 
 ```bash
+# Method 1: Install to system directory
 sudo cp target/release/yk /usr/local/bin/
 sudo chmod +x /usr/local/bin/yk
+
+# Method 2: Add to user PATH (recommended)
+export PATH="$PATH:$PWD/target/release"
+# Add to ~/.bashrc or ~/.zshrc for permanent effect
+echo 'export PATH="$PATH:$PWD/target/release"' >> ~/.bashrc
 ```
 
-### 初始化配置
+### Verify Installation
+
+```bash
+yk --help
+```
+
+## Quick Start
+
+### 1. Initialize Configuration
+
+First-time YK usage requires initialization:
 
 ```bash
 yk init
 ```
 
-初始化后生成以下目录结构：
+This creates the following directory structure:
 
 ```plaintext
 ~/.config/yk/
-├── config.json          # 主配置
-├── simple_commands.json # 简单命令配置文件
-└── plugins/            # 插件目录
+├── config.json          # Main configuration file
+├── simple_commands.json # Simple commands configuration
+└── plugins/             # Plugins directory
 ```
 
-## 使用方法
+### 2. Create Your First Command
 
-### 基本命令
+Create a simple command interactively:
 
-| 命令 | 功能 |
-|------|------|
-| `yk` 或 `yk find` | 查找并执行命令 |
-| `yk new` | 创建新命令 |
-| `yk init` | 初始化配置 |
+```bash
+yk new
+```
 
-### 交互式界面
+Follow the prompts:
 
-运行 `yk` 后进入交互式选择界面：
+- **Command Name**: `hello`
+- **Labels**: `demo greeting`
+- **Description**: `Print greeting message`
+- **Executable**: `echo`
+- **Arguments**: `Hello, YK!`
+- **Shell Execution**: `n`
 
-请选择一个命令🔍: >
+### 3. Use Commands
 
-界面显示信息：
+Run YK to enter the interactive interface:
 
-- 命令索引：左侧数字
-- 可执行文件：使用的程序
-- 命令名称：自定义标识
-- 标签：命令分类
-- 配置详情：JSON 配置信息
+```bash
+yk
+```
 
-#### 快捷键
+In the interactive interface:
 
-- `Enter`：选择并执行
-- `Esc/Ctrl+C`：取消
-- `↑/↓` 或 `Ctrl+P/N`：导航
-- 直接输入：模糊搜索
+- Type `hello` or `demo` to search
+- Press `Enter` to execute selected command
+- Press `Esc` to exit
 
-## 配置说明
+### 4. Command Line Options
 
-### 主配置文件
+YK supports the following commands:
 
-文件路径：`~/.config/yk/config.json`
+| Command | Description |
+|---------|-------------|
+| `yk` or `yk find` | Find and execute commands |
+| `yk new` | Create new command |
+| `yk init` | Initialize configuration |
+| `yk --help` | Display help information |
+
+## Configuration
+
+### Main Configuration File
+
+File path: `~/.config/yk/config.json`
 
 ```json
 {
@@ -104,41 +153,41 @@ yk init
 }
 ```
 
-#### 配置参数
+#### Configuration Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `fzf_executable` | string | "fzf" | fzf 可执行文件路径 |
-| `rg_executable` | string | "rg" | ripgrep 可执行文件路径 |
-| `editor` | string | "hx" | 文本编辑器路径 |
-| `if_run` | boolean | true | 是否执行选中命令 |
-| `if_run_confirm` | boolean | true | 执行前是否确认 |
-| `if_yank` | boolean | true | 是否复制到剪贴板 |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `fzf_executable` | string | "fzf" | fzf executable path |
+| `rg_executable` | string | "rg" | ripgrep executable path |
+| `editor` | string | "hx" | Text editor path |
+| `if_run` | boolean | true | Whether to execute selected command |
+| `if_run_confirm` | boolean | true | Whether to confirm before execution |
+| `if_yank` | boolean | true | Whether to copy to clipboard |
 
-## 命令管理
+## Command Management
 
-一个完整命令的参数说明
+### Complete Command Parameters
 
-| 参数 | 类型 | 默认值 | 说明 |
-|------|------|--------|------|
-| `labels` | array | [] | 命令标签 |
-| `description` | string | "" | 命令描述 |
-| `executable` | string | "" | 可执行文件路径 |
-| `entry_point` | string | "" | 插件入口文件路径是相对与插件目录的路径 |
-| `args` | array | [] | 命令参数 |
-| `if_shell` | boolean | false | 是否在shell中执行 |
+| Parameter | Type | Default | Description |
+|-----------|------|---------|-------------|
+| `labels` | array | [] | Command labels |
+| `description` | string | "" | Command description |
+| `executable` | string | "" | Executable file path |
+| `entry_point` | string | "" | Plugin entry file path relative to plugin directory |
+| `args` | array | [] | Command arguments |
+| `if_shell` | boolean | false | Whether to execute in shell |
 
-### 创建简单命令或者插件
+### Creating Simple Commands or Plugins
 
-简单命令使用 `yk new` 交互式创建,根据提示进行创建即可,也可以进行手动修改对应文件
+Simple commands can be created interactively using `yk new` by following the prompts, or by manually editing the corresponding files.
 
-#### 示例配置
+#### Example Configuration
 
 ```json
 {
   "hello": {
     "labels": ["greeting", "demo"],
-    "description": "打印问候信息",
+    "description": "Print greeting message",
     "executable": "echo",
     "args": ["Hello, World!"],
     "if_shell": false
@@ -146,24 +195,24 @@ yk init
 }
 ```
 
-#### 创建插件
+#### Creating Plugins
 
-插件目录结构：
+Plugin directory structure:
 
 ```plaintext
 ~/.config/yk/plugins/
 └── myplugin.yk/
-    ├── myplugin.yk.json  # 插件配置
-    └── scripts/          # 插件脚本(自己随便搞没有什么要求)
+    ├── myplugin.yk.json  # Plugin configuration
+    └── scripts/          # Plugin scripts (no specific requirements)
 ```
 
-#### 插件配置格式
+#### Plugin Configuration Format
 
 ```json
 {
   "complex-command": {
     "labels": ["deployment", "production"],
-    "description": "部署应用到生产环境",
+    "description": "Deploy application to production environment",
     "executable": "/usr/local/bin/deploy.sh",
     "entry_point": "scripts/deploy.js",
     "args": ["--env", "production", "--verbose"],
@@ -172,19 +221,19 @@ yk init
 }
 ```
 
-#### 命令执行规则
+#### Command Execution Rules
 
-- **简单命令**：`可执行文件 参数`
-- **插件命令**：`可执行文件 插件入口文件 参数`
-- **Shell执行**：`if_shell` 为 `true` 时，命令在 shell 中执行,在windows使用cmd,类unix系统使用bash
+- **Simple Commands**: `executable arguments`
+- **Plugin Commands**: `executable plugin_entry_file arguments`
+- **Shell Execution**: When `if_shell` is `true`, commands execute in shell (cmd on Windows, bash on Unix-like systems)
 
-## 许可证
+## License
 
-MIT License - 详见 [LICENSE](LICENSE) 文件
+MIT License - See [LICENSE](LICENSE) file for details
 
-## 致谢
+## Acknowledgments
 
-- [clap](https://github.com/clap-rs/clap) - 命令行参数解析
-- [fzf](https://github.com/junegunn/fzf) - 模糊查找器
-- [ripgrep](https://github.com/BurntSushi/ripgrep) - 快速搜索
-- [serde](https://github.com/serde-rs/serde) - 序列化框架
+- [clap](https://github.com/clap-rs/clap) - Command line argument parsing
+- [fzf](https://github.com/junegunn/fzf) - Fuzzy finder
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - Fast search
+- [serde](https://github.com/serde-rs/serde) - Serialization framework
