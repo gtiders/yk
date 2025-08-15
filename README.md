@@ -2,7 +2,8 @@
 
 [🇨🇳 中文说明](README_ZH.md) | [🇺🇸 English](README.md)
 
-The original repository at `git@github.com:gybwins/yk.git` has been banned for unknown reasons and remains unblocked. Future updates will be made in the current repository
+The original repository at <https://github.com/gybwins/yk.git> has been banned for unknown reasons and remains unblocked. Future updates will be made in the current repository; the main repository for updates is <https://gitee.com/bobo-wins/yk.git>
+
 ---
 
 YK is a command management tool that supports both simple commands and complex plugin-based commands through an interactive interface. Quickly find, execute, and manage various command snippets to make your daily workflow more efficient.

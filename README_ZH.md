@@ -1,7 +1,8 @@
 # YK - 命令管理工具
 
-原仓库在<git@github.com>:gybwins/yk.git  因不知名原因被封禁，仍未解封，以后更新会在现在这个仓库
+原仓库在<https://github.com/gybwins/yk.git>  因不知名原因被封禁，仍未解封，以后更新会在现在这个仓库；更新主要仓库是 <https://gitee.com/bobo-wins/yk.git>
 
+---
 YK 是一个命令管理工具，支持简单命令和复杂插件化命令的交互式管理。通过简洁的交互界面，您可以快速查找、执行和管理各种命令片段，让日常工作流程更加高效。
 
 ## 核心特性
@@ -25,9 +26,9 @@ YK 是一个命令管理工具，支持简单命令和复杂插件化命令的�
 #### 1. 克隆仓库
 
 ```bash
-git clone git@github.com:gtiders/yk.git
+git clone git@gitee.com:bobo-wins/yk.git
 # 或者
-git clone https://github.com/gtiders/yk.git
+git clone https://gitee.com/bobo-wins/yk.git
 
 cd yk
 ```
